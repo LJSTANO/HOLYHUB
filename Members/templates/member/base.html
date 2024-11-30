@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Holy Hub{% endblock %}</title>
+    {% block style %}
+    <!-- Your CSS here -->
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- Add your site navigation here -->
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% block script %}
+    <!-- Add your JavaScript here -->
+    {% endblock %}
+</body>
+</html>

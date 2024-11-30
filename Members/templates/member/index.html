@@ -1,0 +1,326 @@
+
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <meta charset="utf-8">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <title>Holy Hub</title>
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+
+      <!-- Favicons -->
+    {#<link rel="icon" type="image/png" href="{% static 'assets/img/logo.png' %}">#}
+    {#<link rel="apple-touch-icon" type="image/png" href="{% static 'assets/img/logo.png' %}">#}
+
+      <!-- Fonts -->
+      <link href="https://fonts.googleapis.com" rel="preconnect">
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+      <!-- Vendor CSS Files -->
+            <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+            <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+            <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+            <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+            <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+            <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+    </head>
+
+    <body class="index-page">
+
+      <header id="header" class="header sticky-top">
+
+        <div class="branding d-flex align-items-cente">
+
+          <div class="container position-relative d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo d-flex align-items-center">
+
+              <h1 class="sitename">HolyHub</h1>
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+              <ul>
+                <li><a href="index.html" class="active">Home<br></a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                  <ul>
+                    <li><a href="#">Dropdown 1</a></li>
+                    <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                      <ul>
+                        <li><a href="#">Deep Dropdown 1</a></li>
+                        <li><a href="#">Deep Dropdown 2</a></li>
+                        <li><a href="#">Deep Dropdown 3</a></li>
+                        <li><a href="#">Deep Dropdown 4</a></li>
+                        <li><a href="#">Deep Dropdown 5</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Dropdown 2</a></li>
+                    <li><a href="#">Dropdown 3</a></li>
+                    <li><a href="#">Dropdown 4</a></li>
+                  </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+              <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+
+          </div>
+
+        </div>
+
+      </header>
+
+    {#  Introductory section#}
+    <section>
+      <div id="carouselExampleCaptions" class="carousel slide">
+
+      <div class="carousel-inner">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <!-- First Slide -->
+        <div class="carousel-item active" data-bs-interval="5000">
+          <img src="{% static 'assets/img/hero-carousel/church 2.png' %}" class="d-block w-100" alt="First Slide">
+          <div class="carousel-caption d-none d-md-block">
+            <p class="animated-text">"Welcome to Holy Hub, your sanctuary for faith and connection. Discover inspiring moments of worship, unity, and growth. Begin your journey of spiritual discovery and community with us today."</p>
+          </div>
+        </div>
+
+        <!-- Second Slide -->
+        <div class="carousel-item" data-bs-interval="5000">
+          <img src="{% static 'assets/img/hero-carousel/bible.1.png' %}" class="d-block w-100" alt="Second Slide">
+          <div class="carousel-caption d-none d-md-block">
+            <p class="animated-text">"Welcome to Holy Hub, where faith and community thrive. Discover inspiring images of worship, unity, and spiritual growth. Explore what Holy Hub offers—your journey to deeper connection begins here."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+        </div>
+      </div>
+          </div>
+    </section>
+
+    {#  end to introductory session#}
+
+        <!-- Call To Action Section -->
+      <section id="call-to-action" class="call-to-action section light-background">
+        {% for cta in call_to_action %}
+            <div class="container">
+             <div class="row" data-aos="zoom-in" data-aos-delay="100">
+             <div class="col-xl-9 text-center text-xl-start">
+               <h3>{{ cta.title }}</h3>
+                <p>{{ cta.description }}</p>
+              </div>
+              <div class="col-xl-3 cta-btn-container text-center">
+              <a class="cta-btn align-middle" href="{{ cta.link_url }}">{{ cta.button_text }}</a>
+              </div>
+             </div>
+            </div>
+        {% endfor %}
+      </section>
+
+       <!-- Services Section -->
+
+    <section id="services" class="services section">
+
+      <div class="container">
+      <p>What We Empower a Church To establish</p>
+        <div class="row gy-4">
+          {% for service in service %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
+              <div class="service-item position-relative">
+              <div class="icon">
+                  <i class="{{ service.icon }}"></i>
+               </div>
+               <a href="#" class="stretched-link">
+               <h3>{{ service.title }}</h3>
+               </a>
+               <p>{{ service.description }}</p>
+          </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </section>
+
+
+        <!-- Clients Section -->
+        <section id="clients" class="clients section">
+
+          <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row g-0 clients-wrap">
+                <p>Trusted By Thousand Of Churches</p>
+
+              <div class="col-xl-3 col-md-10 client-logo">
+                <img src="{% static 'assets/img/clients/MBCI.png' %}" class="img-fluid" alt="">
+              </div><!-- End Client Item -->
+
+              <div class="col-xl-3 col-md-4 client-logo">
+                <img src="{% static 'assets/img/clients/AIC.png' %}" class="img-fluid" alt="">
+              </div><!-- End Client Item -->
+
+              <div class="col-xl-3 col-md-4 client-logo">
+                <img src="{% static 'assets/img/clients/ACK.png' %}" class="img-fluid" alt="">
+              </div><!-- End Client Item -->
+
+              <div class="col-xl-3 col-md-4 client-logo">
+                <img src="{% static 'assets/img/clients/JCM.png' %}" class="img-fluid" alt="">
+              </div><!-- End Client Item -->
+
+              <div class="col-xl-3 col-md-4 client-logo">
+                <img src="{% static 'assets/img/clients/KOI.png' %}" class="img-fluid" alt="">
+              </div><!-- End Client Item -->
+
+              <div class="col-xl-3 col-md-4 client-logo">
+                <img src="{% static 'assets/img/clients/UNK.png' %}" class="img-fluid" alt="">
+              </div><!-- End Client Item -->
+
+              <div class="col-xl-3 col-md-4 client-logo">
+                <img src="{% static 'assets/img/clients/APS.png' %}" class="img-fluid" alt="">
+              </div><!-- End Client Item -->
+
+              <div class="col-xl-3 col-md-4 client-logo">
+                <img src="{% static 'assets/img/clients/IC.png' %}" class="img-fluid" alt="">
+              </div><!-- End Client Item -->
+
+            </div>
+
+          </div>
+
+        </section><!-- /Clients Section -->
+
+      </main>
+
+      <footer id="footer" class="footer dark-background">
+
+        <div class="footer-top">
+          <div class="container">
+            <div class="row gy-4">
+              <div class="col-lg-4 col-md-6 footer-about">
+                <a href="index.html" class="logo d-flex align-items-center">
+                  <span class="sitename">HolyHub</span>
+                </a>
+                <div class="footer-contact pt-3">
+                  <p>General Kago Street</p>
+                  <p>Ruiru, 535022</p>
+                  <p class="mt-3"><strong>Phone:</strong> <span>0742609790</span></p>
+                  <p><strong>Email:</strong> <span>holyhub.com</span></p>
+                </div>
+              </div>
+
+              <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Useful Links</h4>
+                <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">About us</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="#">Terms of service</a></li>
+                  <li><a href="#">Privacy policy</a></li>
+                </ul>
+              </div>
+
+              <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Our Services</h4>
+                <ul>
+                  <li><a href="#"></a></li>
+                  <li><a href="#">Bible Study</a></li>
+                  <li><a href="#">Church Events</a></li>
+                  <li><a href="#">Online Sermons</a></li>
+                  <li><a href="#">Leadership Development</a></li>
+                </ul>
+              </div>
+
+              <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Social Media Pages</h4>
+                <ul>
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">X</a></li>
+                  <li><a href="#">Youtube</a></li>
+                  <li><a href="#">Instagram</a></li>
+                  <li><a href="#">Telegram</a></li>
+                </ul>
+              </div>
+
+      <div class="col-lg-2 col-md-3 footer-links">
+
+      <div class="col-lg-4 col-md-6 footer-newsletter">
+        <h4>Our Newsletter</h4>
+         <p>Email Required</p>
+          <form action="" method="post">
+            <input type="email" name="email"><input type="submit" value="Subscribe">
+          </form>
+
+
+      </div>
+      </div>
+      </div>
+
+      <div class="copyright text-center">
+        <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+
+          <div class="d-flex flex-column align-items-center align-items-lg-start">
+           <div>
+                © Copyright <strong><span>HolyHub</span></strong>. All Rights Reserved
+              </div>
+              <div class="credits">
+
+                  <a href=""></a>Designed by STANLEYMADE</a>
+              </div>
+            </div>
+
+
+
+      <!-- Scroll Top -->
+      <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+      <!-- Preloader -->
+      <div id="preloader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <!-- Vendor JS Files -->
+            <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+            <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+            <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+            <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+            <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+            <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+            <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+            <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+            <script src="{% static 'assets/js/main.js' %}"></script>
+
+    </div>
+    </body>
+
+    </html>
