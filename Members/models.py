@@ -23,22 +23,23 @@ class CallToAction(models.Model):
     def __str__(self):
         return self.title
 
-from django.db import models
 
 class Member(models.Model):
-    username = models.CharField(max_length=100)
-    email = models.EmailField()
-    password1 = models.CharField(max_length=128)
-    password2 = models.CharField(max_length=128)
+    username = models.CharField(max_length=100,default="Stanley", unique=True)
+    email = models.EmailField(unique=True, default="default@holyhub.com")
+    password = models.CharField(max_length=128, default="holyhub")
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=15)
-    image = models.ImageField(upload_to='members/', null=True, blank=True)  # This is the ImageField
 
     def __str__(self):
         return self.username
 
 
+class NewsletterSubscription(models.Model):
+    email = models.EmailField(unique=True)  # Ensures that each email is unique
+    subscribed_at = models.DateTimeField(auto_now_add=True)  # Automatically set the date when subscribed
 
+    def __str__(self):
+        return self.email
 
-# Create your models here.

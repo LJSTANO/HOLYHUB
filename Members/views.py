@@ -1,11 +1,10 @@
-
-
 from django.shortcuts import render,redirect
-from pyexpat.errors import messages
-
 from .models import Slider, Service, CallToAction
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import forms
+from django.contrib import messages
+from django.contrib.auth.hashers import make_password, check_password
+from .forms import MemberRegistrationForm, MemberLoginForm,PasswordResetForm
+from .models import Member
+
 
 def index(request):
     service = Service.objects.all()
@@ -16,24 +15,54 @@ def index(request):
         "service": service,
         "call_to_action": call_to_action
     })
+# Registration view
+def register(request):
+    if request.method == 'POST':
+        form = MemberRegistrationForm(request.POST)
+        if form.is_valid():
+            # Save the member with a hashed password
+            member = form.save(commit=False)
+            member.password = make_password(form.cleaned_data['password1'])
+            member.save()
+            messages.success(request, 'Registration successful! You can now login.')
+            return redirect('Members:login')  # Use the 'Members' namespace
+
+    else:
+        form = MemberRegistrationForm()
+    return render(request, 'member/register.html', {'form': form})
+
+# Login view
 def login_view(request):
-    form = AuthenticationForm()  # Ensure you're using the correct form class
+    if request.method == 'POST':
+        form = MemberLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            try:
+                member = Member.objects.get(username=username)
+                if check_password(password, member.password):
+                    # Login successful
+                    request.session['member_id'] = member.id
+                    messages.success(request, f'Welcome {member.first_name}!')
+                    return redirect('Members:index')  # Replace 'home' with your dashboard URL
+                else:
+                    messages.error(request, 'Invalid username or password.')
+            except Member.DoesNotExist:
+                messages.error(request, 'Invalid username or password.')
+
+    else:
+        form = MemberLoginForm()
     return render(request, 'member/login.html', {'form': form})
 
 def password_reset(request):
-    return render(request,'member/password_reset.html')
-
-from django.shortcuts import render, redirect
-from .forms import MemberRegistrationForm
-
-def register(request):
     if request.method == 'POST':
-        form = MemberRegistrationForm(request.POST, request.FILES)  # Add request.FILES here
+        form = PasswordResetForm(request.POST)
         if form.is_valid():
-            form.save()
-
-            messages.success(request, 'Registration successful! You can now login.')
-            return redirect('member:index')  # Adjust the redirect URL as needed
+            form.save(request=request)
+            messages.success(request, 'A password reset link has been sent to your email.')
+            return redirect('Members:login')  # Redirect to the login page after request
     else:
-        form = MemberRegistrationForm()
-    return render(request, 'register/register.html', {'form': form})
+        form = PasswordResetForm()
+
+    return render(request, 'Member/password_reset.html', {'form': form})

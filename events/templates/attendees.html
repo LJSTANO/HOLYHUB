@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for Event</title>
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/events.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4" style="max-width: 600px;">
+    <h1 class="text-center mb-4">Register for Event</h1>
+
+
+    <div class="event-details">
+        <h3>{{ event.title }}</h3>
+        <p><strong>Description:</strong> {{ event.description }}</p>
+        <p><strong>Date:</strong> {{ event.event_date }}</p>
+    </div>
+
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'events:register_attendee' event.id %}">
+            {% csrf_token %}
+            <!-- Member's name field -->
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+
+            <!-- Member's phone number field -->
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" name="phone" id="phone" class="form-control" required>
+            </div>
+
+            <!-- Member's email field -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+
+            <!-- Register button -->
+            <button type="submit" class="btn btn-success btn-block">Register as Attendee</button>
+        </form>
+    {% else %}
+        <p class="text-danger">You must be logged in to register for this event. <a href="{% url 'Members:login' %}">Login</a></p>
+    {% endif %}
+
+    <a href="{% url 'events:event_list' %}" class="btn btn-secondary mt-4 d-block">Back to Events</a>
+</div>
+
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

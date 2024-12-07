@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event List</title>
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/events.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4" style="max-width: 600px;">
+    <h1 class="text-center mb-4">Events</h1>
+    <ul class="list-group">
+        {% for event in events %}
+            <li class="list-group-item event-item">
+                <h5 class="event-title">{{ event.title }}</h5>
+                <p class="event-description">{{ event.description }}</p>
+                <p class="event-date"><strong>Date:</strong> {{ event.event_date }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'events:attendees' %}" class="btn btn-primary mt-4 d-block">Confirm attendance</a> <!-- Button moved below -->
+</div>
+
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

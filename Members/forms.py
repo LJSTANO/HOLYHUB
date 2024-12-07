@@ -1,43 +1,39 @@
+# forms.py
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from .models import Member
-from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.forms import PasswordResetForm
 
-class MemberRegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(max_length=100, required=True)
-    last_name = forms.CharField(max_length=100, required=True)
-    phone_number = forms.CharField(max_length=15, required=True)  # Set this field as required
-    image = forms.ImageField(required=True)
-    password1 = forms.CharField(widget=forms.PasswordInput, required=True)
-    password2 = forms.CharField(widget=forms.PasswordInput, required=True)
+class MemberRegistrationForm(forms.ModelForm):
+    password1 = forms.CharField(widget=forms.PasswordInput, required=True, label="Password")
+    password2 = forms.CharField(widget=forms.PasswordInput, required=True, label="Confirm Password")
 
     class Meta:
-        model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'phone_number', 'password1', 'password2', 'image']
+        model = Member
+        fields = ['username', 'email', 'first_name', 'last_name', 'phone_number']
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data['email']
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get("password1")
+        password2 = cleaned_data.get("password2")
 
-        if commit:
-            user.save()
+        if password1 != password2:
+            raise forms.ValidationError("Passwords do not match.")
+        return cleaned_data
 
-        # Save the Member's additional data, including image
-        member = Member.objects.create(
-            user=user,
-            first_name=self.cleaned_data['first_name'],
-            last_name=self.cleaned_data['last_name'],
-            phone_number=self.cleaned_data['phone_number'],
-            image=self.cleaned_data.get('image')  # Store the image
-        )
 
-        return member
+class MemberLoginForm(forms.Form):
+    username = forms.CharField(max_length=100, required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
 
-    from django import forms
-    from django.contrib.auth.forms import AuthenticationForm
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(label="Enter your email", required=True)
 
-    class LoginForm(AuthenticationForm):
-        # Optional: Add any custom fields or styling
-        pass
+    class Meta:
+        fields = ['email']
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not email:
+            raise forms.ValidationError("Please provide an email address.")
+        return email

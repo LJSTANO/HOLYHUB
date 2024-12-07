@@ -1,27 +1,42 @@
 {% extends "member/base.html" %}
 {% load static %}
-{% block title %}HolyHub Login{% endblock title %}
-{% block style %}<link rel = "stylesheet" href = "{% static 'assets/css/form.css' %}" type = "text/css">{% endblock style %}
-{% block current-page %}{% endblock current-page %}
+
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo.png' %}">
+    <link rel="apple-touch-icon" type="image/png" href="{% static 'assets/img/logo.png' %}">
+
+{% block title %}Believe - Login{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/css/form.css' %}" type="text/css">
+{% endblock style %}
+{% block current-page %}Login{% endblock current-page %}
+
 {% block content %}
-
     <div class="container">
-       <div class="margin-container">
-        <h2>Register for Holy Hub</h2>
-
-            <form action="{% url 'Members:login' %}" method="post" class="form">
+        <div class="margin-container">
+           <h2>HolyHub</h2>
+         <link rel="icon" type="image/png" href="{% static 'assets/img/logo.png' %}">
+            <form method="post" class="form">
                 {% csrf_token %}
+
+                <!-- Display form errors if any -->
                 {% for err in form.non_field_errors %}
                     <p class="error-text">{{ err }}</p>
                 {% endfor %}
+
+                <!-- Username Field -->
                 <label for="id_username">{{ form.username.label }}</label>
-                {{ form.username }} 
+                {{ form.username }}
+
+                <!-- Password Field -->
                 <label for="id_password">{{ form.password.label }}</label>
                 {{ form.password }}
+
+                <!-- Submit Button -->
                 <input type="submit" value="Login" class="action">
-                <input type="hidden" name="next" value="{{ request.GET.next }}"/>
-                <p>Not a member?<a class="blue-link" href="{% url 'Members:register' %}">Register</a></p>
-                <p><a class="blue-link" href="{% url 'Members:password_reset' %}">Forgot Password</a></p>
+
+                <!-- Redirect to Register Link -->
+                <p>Not a member? <a class="blue-link" href="{% url 'Members:register' %}">Register</a></p>
+                <p><a class="blue-link" href="{% url 'Members:password_reset' %}">Forgot Password?</a></p>
             </form>
         </div>
     </div>
