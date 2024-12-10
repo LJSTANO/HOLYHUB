@@ -1,14 +1,9 @@
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from .models import Event
-from .forms import EventForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Event, EventAttendee
+from django.http import HttpResponse
+from .models import Event, EventsAttendee
+from .forms import EventForm, EventsAttendeeForm
 
 def event_list(request):
     events = Event.objects.all()
@@ -24,33 +19,46 @@ def event_create(request):
         form = EventForm()
     return render(request, 'event_form.html', {'form': form})
 
+def attendees_list(request):
+    events = Event.objects.all()
+    return render(request, 'attendees_list.html', {'events': events})
 
-def register_attendee(request, event_id):
+
+def confirm_attendance(request, event_id):
+
     event = get_object_or_404(Event, id=event_id)
 
-    # Check if the user is already registered
-    if EventAttendee.objects.filter(event=event, user=request.user).exists():
-        messages.warning(request, 'You are already registered for this event.')
-        return redirect('events:event_list')
-
     if request.method == 'POST':
-        # Get form data
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        email = request.POST.get('email')
 
-        # Create an EventAttendee entry
-        EventAttendee.objects.create(
-            event=event,
-            user=request.user,
-            name=name,
-            phone=phone,
-            email=email
-        )
-        messages.success(request, 'Successfully registered for the event!')
-        return redirect('events:event_list')
+        form = EventsAttendeeForm(request.POST)
+        if form.is_valid():
 
-    return render(request, 'attendees.html', {'event': event})
-def attendee_list(request):
-    # Replace with actual logic to get attendees
-    return render(request, 'attendees.html')
+            attendee = form.save(commit=False)
+            attendee.event = event
+            attendee.save()
+            return redirect('events:attendees')  # Redirect to the list of attendees
+    else:
+
+        form = EventsAttendeeForm()
+
+    return render(request, 'confirm_attendance.html', {'form': form, 'event': event})
+
+def event_attendees(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    attendees = EventsAttendee.objects.filter(event=event)
+
+    return render(request, 'confirmed_attendees.html', {
+        'event': event,
+        'attendees': attendees,
+    })
+
+def edit_attendee(request, pk):
+    attendee = get_object_or_404(EventsAttendee, pk=pk)
+    if request.method == 'POST':
+        form = EventsAttendeeForm(request.POST, instance=attendee)
+        if form.is_valid():
+            form.save()
+            return redirect('events:attendees')  # Redirect to the attendees list after saving
+    else:
+        form = EventsAttendeeForm(instance=attendee)
+    return render(request, 'edit_attendee.html', {'form': form, 'attendee': attendee})

@@ -109,17 +109,17 @@
 
 <!-- Automated Communication Feature -->
 <div class="col-md-4 mb-4">
-     <div class="feature-box">
-       <div class="feature-icon">
-         <i class="far fa-comments"></i>
-     </div>
-       <div class="feature-text">
-         <h4 class="feature-title"><a href="#automated-communication">Automated Communication</a></h4>
-         <p>Send messages, newsletters, and announcements to your congregation via email or
-             text, ensuring effective communication.</p>
-      </div>
-       </div>
-       </div>
+    <div class="feature-box">
+        <div class="feature-icon">
+            <i class="far fa-comments"></i>
+        </div>
+        <div class="feature-text">
+            <h4 class="feature-title"><a href="{% url 'send_newsletter' %}">Automated Communication</a></h4>
+            <p>Send newsletters, and announcements to your congregation via email ensuring effective communication.</p>
+        </div>
+    </div>
+</div>
+
 
 <!-- Automated Payments Feature -->
        <div class="col-md-4 mb-4">
@@ -170,9 +170,9 @@
           <i class="fas fa-church"></i>
         </div>
        <div class="feature-text">
-           <h4 class="feature-title"><a href="#prayer-requests">Prayer Requests</a></h4>
+          <h4 class="feature-title"><a href="{% url 'features_page' %}">Prayer Requests and Sermons</a></h4>
             <p>Members can submit prayer requests on various topics, ensuring personalized
-                support from church leaders.</p>
+                support from church leaders and Sermons</p>
        </div>
         </div>
         </div>

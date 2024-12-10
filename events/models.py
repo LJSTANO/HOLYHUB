@@ -1,6 +1,5 @@
-from django.db import models
+
 from django.contrib.auth.models import User
-# Create your models here.
 from django.db import models
 
 class Event(models.Model):
@@ -12,12 +11,15 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
-class EventAttendee(models.Model):
-        event = models.ForeignKey(Event, related_name='attendees', on_delete=models.CASCADE)
-        user = models.ForeignKey(User, on_delete=models.CASCADE)
-        name = models.CharField(max_length=100,default='john')
-        phone = models.CharField(max_length=15,default='07********')
-        email = models.EmailField(default='<holyhub@gmail.com>')
+class EventsAttendee(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='attendees')
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
 
-        def __str__(self):
-            return f'{self.name} - {self.event.title}'
+    class Meta:
+        db_table = 'eventsattendee'
+
+    def __str__(self):
+        return f'{self.name} - {self.event.title}'
+
+

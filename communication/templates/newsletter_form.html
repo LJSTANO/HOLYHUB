@@ -1,0 +1,23 @@
+{% load static %}
+{% block content %}
+<div class="container mt-5 bg-info p-5 rounded">
+    <h2 class="text-center text-white">Send a Newsletter</h2>
+
+    <!-- Newsletter Form -->
+    <link href="{% static 'assets/css/event_form.css' %}" rel="stylesheet">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_subject" class="form-label text-white">Subject</label>
+            {{ form.subject }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_content" class="form-label text-white">Content</label>
+            {{ form.content }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send Newsletter</button>
+    </form>
+</div>
+{% endblock %}

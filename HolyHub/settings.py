@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'Members',
     'features',
     'events',
+    'sermons',
+    'communication',
+
 ]
 
 MIDDLEWARE = [
@@ -134,12 +137,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_ADMIN_EMAIL = 'adminholy@gmail.com'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'kagurustanley@gmail.com'
-EMAIL_HOST_PASSWORD = 'kaguru@1234'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
+EMAIL_HOST_PASSWORD = 'gboz xuav vefa fqen'
