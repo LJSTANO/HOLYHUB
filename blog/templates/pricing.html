@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans</title>
+    <link href="{% static 'assets/css/test.css' %}" rel="stylesheet">
+</head>
+
+<section id="pricing" class="pricing section">
+    <div class="container">
+        <div class="heading-container">
+            <h2>Choose Your Plan</h2>
+        </div>
+
+{#basic plan#}
+        <div class="row gy-4">
+            <div class="col-lg-4">
+                <div class="pricing-card">
+                    <h3>Basic Plan</h3>
+                    <p class="price">$19/month</p>
+                    <a href="{% url 'Members:register' %}" class="btn btn-primary">Sign Up</a>
+                </div>
+        </div>
+{#basic plan#}
+
+{#std plan#}
+            <div class="col-lg-4">
+                <div class="pricing-card">
+                    <h3>Standard Plan</h3>
+                    <p class="price">$49/month</p>
+                    <a href="{% url 'Members:register' %}" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+{#std plan end #}
+
+{#premium plan#}
+            <div class="col-lg-4">
+                <div class="pricing-card">
+                    <h3>Premium Plan</h3>
+                    <p class="price">$99/month</p>
+                    <a href="{% url 'Members:register' %}" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+{#premium plan#}
+
+        </div>
+    </div>
+
+</section>
+
+</html>

@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from .views import no_permission
 
 urlpatterns = [
     path('send-newsletter/', views.send_newsletter, name='send_newsletter'),

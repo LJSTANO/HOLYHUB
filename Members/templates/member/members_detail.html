@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Details</title>
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/attendees.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Member Details</h1>
+    <div class="card">
+        <div class="card-header text-white bg-primary">
+            <h4>{{ member.first_name }} {{ member.last_name }}</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Username:</strong> {{ member.username }}</p>
+            <p><strong>Email:</strong> {{ member.email }}</p>
+            <p><strong>Phone:</strong> {{ member.phone_number }}</p>
+            <p><strong>Joined:</strong> {{ member.date_joined|date:"M d, Y" }}</p>
+        </div>
+        <div class="card-footer text-end">
+            <a href="{% url 'Members:member_list' %}" class="btn btn-secondary">Back to Members List</a>
+            <a href="{% url 'Members:member_update' pk=member.pk %}" class="btn btn-warning">Edit Member</a>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

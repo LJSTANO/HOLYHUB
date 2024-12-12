@@ -31,4 +31,8 @@ urlpatterns = [
     path('sermons', include('sermons.urls')),
 
     path('communication/', include('communication.urls')),
+
+    path('payments/', include('payments.urls')),
+
+    path('blog/', include('blog.urls'))
 ]

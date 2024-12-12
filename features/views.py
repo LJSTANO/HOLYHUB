@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from Members.models import Member
 
 # Create your views here.
 def feature_view(request):
-    return render(request, 'features.html')
+    members = Member.objects.all()  # Get all members
+    return render(request, 'features.html', {'members': members})

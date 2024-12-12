@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'assets/css/event_form.css' %}" rel="stylesheet">
+
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Payment Form</h2>
+        <form method="post" action="{% url 'stkpush' %}" class="shadow p-4 rounded bg-white">
+            {% csrf_token %}
+
+        <div class="mb-3">
+                <label for="id_amount" class="form-label">Name:</label>
+                <input type="text" step="5" name="amount" id="id_amount" value="{{ form.amount.value }}" class="form-control" required>
+            </div>
+
+            <!-- Amount Field -->
+            <div class="mb-3">
+                <label for="id_amount" class="form-label">Amount:</label>
+                <input type="number" step="5" name="amount" id="id_amount" value="{{ form.amount.value }}" class="form-control" required>
+            </div>
+
+            <!-- Payment Type Field -->
+            <div class="mb-3">
+                <label for="id_payment_type" class="form-label">Payment Type:</label>
+                <select name="payment_type" id="id_payment_type" class="form-select" required>
+                    <option value="donation">Donation</option>
+                    <option value="tithe">Tithe</option>
+                    <option value="offering">Offering</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- Phone Number Field -->
+            <div class="mb-3">
+                <label for="id_phone_number" class="form-label">Phone Number:</label>
+                <input type="text" name="phone_number" id="id_phone_number" value="{{ form.phone_number.value }}" class="form-control" required>
+                {% if form.phone_number.errors %}
+                    <ul class="error-list mt-2 text-danger">
+                        {% for error in form.phone_number.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100">Pay Now</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Management</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ6D5d4B+1u0eA6q+OHQ3h6S+r95t90fiOD4FQMjZ2XPa2Kz7w2Sfqy5vlkX" crossorigin="anonymous">
+    <!-- Your custom CSS -->
+    <link href="{% static 'assets/css/confirmed.css' %}" rel="stylesheet">
+</head>
+<body>
+    {% block content %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Finance Management</h2>
+
+        <!-- Payments Table -->
+        <div class="mb-4">
+            <h4>Transaction History</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Payment Type</th>
+                        <th>Amount</th>
+                        <th>Phone Number</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment in payments %}
+                        <tr>
+                            <td>{{ payment.name }}</td>
+                            <td>{{ payment.get_payment_type_display }}</td>
+                            <td>{{ payment.amount }}</td>
+                            <td>{{ payment.phone_number }}</td>
+                            <td>{{ payment.date|date:"Y-m-d H:i" }}</td>
+                            <td>{{ payment.status }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    <!-- Payment Summary -->
+        <div class="mb-4">
+            <h4>Payment Summary</h4>
+            <p><strong>Total Donations:</strong> {{ total_donations }}</p>
+            <p><strong>Total Tithes:</strong> {{ total_tithes }}</p>
+            <p><strong>Total Offerings:</strong> {{ total_offerings }}</p>
+            <p><strong>Total Other Payments:</strong> {{ total_other }}</p>
+        </div>
+
+        <!-- Print Report Button -->
+        <div class="mb-4">
+            <button class="btn btn-primary" onclick="window.print()">Print Report</button>
+        </div>
+    </div>
+    {% endblock %}
+
+    <!-- Bootstrap JS & Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBqPaK2tO4X1p8B5OTsbMG6l7xj7Rm3Jk5cP4FkvpV5jW5YdM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqBdVf94aR2+4S1pT0F5wFHzG4Do7N/KxqUw5TYKjPpXw" crossorigin="anonymous"></script>
+</body>
+</html>
